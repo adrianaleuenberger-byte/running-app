@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b2d">
+<title>RunWise — Your daily running recommendation</title>
+<style>
+:root{--bg:#f3f5f7;--ink:#142238;--muted:#6b7788;--navy:#101b2d;--lime:#c7f36b;--line:#e2e7ec;--white:#fff;--blue:#eaf1ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:var(--navy);color:white;padding:28px 22px 64px}
+.top{max-width:960px;margin:auto;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;letter-spacing:-.5px}
+.logo{width:38px;height:38px;border-radius:12px;background:var(--lime);color:var(--navy);display:grid;place-items:center;font-size:21px}
+.tag{font-size:11px;color:#b9c4d2;letter-spacing:1.6px;font-weight:700}
+.hero{max-width:960px;margin:42px auto 0}
+.eyebrow{color:var(--lime);font-size:11px;letter-spacing:1.8px;font-weight:800;text-transform:uppercase}
+h1{font-size:clamp(32px,6vw,52px);letter-spacing:-2px;line-height:1.04;margin:12px 0}
+.hero p{color:#bac5d4;max-width:540px;line-height:1.6;margin:0;font-size:15px}
+main{max-width:960px;margin:-34px auto 60px;padding:0 18px;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.panel,.result{background:white;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(16,27,45,.06)}
+.panel h2{font-size:17px;margin:0 0 5px;letter-spacing:-.3px}
+.sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.5}
+.field{margin:0 0 19px}.field label{display:block;font-size:13px;font-weight:750;margin-bottom:9px}
+.options{display:flex;flex-wrap:wrap;gap:8px}
+button.choice{border:1px solid var(--line);background:#fff;color:#344257;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:650;cursor:pointer;transition:.15s}
+button.choice:hover{border-color:#9bb0c5}
+button.choice.active{background:var(--navy);color:white;border-color:var(--navy)}
+select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font:inherit;font-size:13px}
+.primary{width:100%;border:0;border-radius:11px;background:var(--navy);color:white;padding:15px;font-size:14px;font-weight:800;cursor:pointer;margin-top:3px}
+.primary:hover{background:#233752}
+.result{background:var(--navy);color:white;min-height:440px;position:sticky;top:18px;overflow:hidden}
+.result:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(199,243,107,.08);right:-90px;top:-90px}
+.result-inner{position:relative}
+.result-kicker{font-size:10px;color:var(--lime);letter-spacing:1.7px;font-weight:800;text-transform:uppercase}
+.result h2{font-size:29px;line-height:1.1;letter-spacing:-1px;margin:12px 0 8px}
+.result-desc{color:#c3cedb;font-size:13px;line-height:1.6;margin:0 0 22px}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.metric{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:13px;border-radius:12px}
+.metric span{display:block;color:#aebccc;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.metric strong{font-size:18px}
+.why{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;margin-top:18px}
+.why strong{font-size:12px;color:var(--lime)}
+.why p{font-size:13px;color:#c3cedb;line-height:1.6;margin:7px 0 0}
+.note{font-size:11px;color:#aebccc;line-height:1.5;margin-top:22px}
+footer{max-width:960px;margin:0 auto 30px;padding:0 18px;color:#7a8797;font-size:11px;line-height:1.5}
+@media(max-width:720px){main{grid-template-columns:1fr;margin-top:-30px}.result{position:static;min-height:0}.panel,.result{padding:20px}header{padding-bottom:60px}.hero{margin-top:34px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand"><div class="logo">↗</div>RunWise</div>
+    <div class="tag">RUN SMARTER</div>
+  </div>
+  <div class="hero">
+    <div class="eyebrow">Your daily running coach</div>
+    <h1>What should you<br>run today?</h1>
+    <p>A simple recommendation based on your recovery, recent training and the time you have. No complicated training plan. Just your next best session.</p>
+  </div>
+</header>
+<main>
+  <section class="panel">
+    <h2>Today's check-in</h2>
+    <p class="sub">Tell RunWise a little about your recent training.</p>
+
+    <div class="field">
+      <label>1. How do you feel today?</label>
+      <div class="options" data-group="feel">
+        <button class="choice active" data-value="fresh">Fresh</button>
+        <button class="choice" data-value="normal">Normal</button>
+        <button class="choice" data-value="tired">Tired</button>
+        <button class="choice" data-value="exhausted">Exhausted</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>2. What was your last run?</label>
+      <div class="options" data-group="last">
+        <button class="choice" data-value="rest">Rest day</button>
+        <button class="choice active" data-value="easy">Easy</button>
+        <button class="choice" data-value="tempo">Tempo</button>
+        <button class="choice" data-value="intervals">Intervals</button>
+        <button class="choice" data-value="long">Long run</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>3. Days since your last hard session</label>
+      <select id="hard"><option value="0">Today</option><option value="1">1 day ago</option><option value="2" selected>2 days ago</option><option value="3">3 days ago</option><option value="4">4 days ago</option><option value="5">5+ days ago</option></select>
+    </div>
+
+    <div class="field">
+      <label>4. Days since your last long run</label>
+      <select id="long"><option value="0">Today</option><option value="1">1 day ago</option><option value="2">2 days ago</option><option value="3">3 days ago</option><option value="4">4 days ago</option><option value="5">5 days ago</option><option value="6" selected>6+ days ago</option></select>
+    </div>
+
+    <div class="field">
+      <label>5. How much time do you have?</label>
+      <div class="options" data-group="time">
+        <button class="choice" data-value="30">30 min</button>
+        <button class="choice" data-value="45">45 min</button>
+        <button class="choice active" data-value="60">60 min</button>
+        <button class="choice" data-value="90">90 min</button>
+        <button class="choice" data-value="120">120 min</button>
+      </div>
+    </div>
+    <button class="primary" id="recommend">Recommend my run&nbsp; →</button>
+  </section>
+
+  <section class="result" aria-live="polite">
+    <div class="result-inner">
+      <div class="result-kicker">Your recommendation</div>
+      <h2 id="runTitle">Easy endurance run</h2>
+      <p class="result-desc" id="runDesc">A comfortable aerobic session to build consistency without adding unnecessary fatigue.</p>
+      <div class="metrics">
+        <div class="metric"><span>Duration</span><strong id="duration">45–60 min</strong></div>
+        <div class="metric"><span>Intensity</span><strong id="intensity">Easy · Z1–Z2</strong></div>
+      </div>
+      <div class="why">
+        <strong>WHY THIS SESSION?</strong>
+        <p id="reason">An easy run is a useful default when you want to build aerobic volume while keeping recovery on track.</p>
+      </div>
+      <p class="note">RunWise is a general training guide, not a medical assessment. If you feel ill, have unusual pain or are unusually fatigued, rest and seek appropriate advice.</p>
+    </div>
+  </section>
+</main>
+<footer>RUNWISE · FIRST PROTOTYPE · Recommendations are rule-based and should be adapted to your training history, goals and individual recovery.</footer>
+<script>
+const state={feel:"fresh",last:"easy",time:"60"};
+document.querySelectorAll(".options").forEach(group=>{
+  group.addEventListener("click",e=>{
+    const btn=e.target.closest("button.choice"); if(!btn)return;
+    group.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active"); state[group.dataset.group]=btn.dataset.value;
+  });
+});
+function recommend(){
+ const feel=state.feel,last=state.last,time=Number(state.time);
+ const hard=Number(document.getElementById("hard").value);
+ const long=Number(document.getElementById("long").value);
+ let type,title,desc,intensity,reason,mins;
+ if(feel==="exhausted"){
+  type="rest";title="Rest day";desc="Skip the run today. Give your body time to recover.";intensity="No running";mins="Rest";
+  reason="You reported feeling exhausted. Training stress is only useful when you can absorb it. Prioritise sleep, food and recovery.";
+ } else if(feel==="tired" || (last==="long" && hard<=1) || hard===0){
+  type="recovery";title="Recovery run";desc="Keep it very gentle, or take a full rest day if your legs feel heavy.";intensity="Very easy · Z1";mins=time<=30?"20–30 min":time<=45?"25–35 min":"30–40 min";
+  reason=feel==="tired"?"Your fatigue level suggests that adding intensity today is unlikely to be productive.":"Your recent training suggests you should allow more recovery before the next demanding session.";
+ } else if(hard<=2 || (last==="long" && long<=2)){
+  type="easy";title="Easy aerobic run";desc="Run at a conversational effort. Keep the pace relaxed and finish with something left in the tank.";intensity="Easy · Z1–Z2";mins=time<=30?"25–30 min":time<=45?"35–45 min":time+" min";
+  reason="Your last session was demanding or recent. An easy aerobic run maintains consistency without stacking another hard workout.";
+ } else if(long>=6 && feel==="fresh" && time>=75){
+  type="long";title="Long endurance run";desc="Build endurance with a steady, controlled effort. Avoid turning it into a race.";intensity="Easy · Z2";mins=Math.min(time,120)+" min";
+  reason="It has been several days since your last long run, and you feel fresh with enough time available.";
+  } else if(hard>=3 && feel==="fresh" && time>=45){
+  type="quality";
+  if(last==="tempo"){title="Interval session";desc="After an easy warm-up, run short, controlled repetitions with easy recovery jogs. Keep the effort strong but repeatable.";intensity="Hard · Z4–Z5";mins=time+" min";}
+  else {title="Tempo session";desc="Warm up easily, run a controlled tempo block, then cool down. The effort should feel comfortably hard, not all-out.";intensity="Moderate-hard · Z3";mins=time+" min";}
+  reason="You feel fresh and at least three days have passed since your last hard session. A quality workout may be appropriate, provided your overall training load supports it.";
+ } else {
+  type="easy";title="Easy aerobic run";desc="A relaxed conversational run. Keep the effort controlled.";intensity="Easy · Z1–Z2";mins=Math.min(time,60)+" min";
+  reason="An easy run is the sensible default when a harder session is not clearly indicated.";
+ }
+ document.getElementById("runTitle").textContent=title;
+ document.getElementById("runDesc").textContent=desc;
+ document.getElementById("duration").textContent=mins;
+ document.getElementById("intensity").textContent=intensity;
+ document.getElementById("reason").textContent=reason;
+}
+document.getElementById("recommend").addEventListener("click",recommend);
+</script>
+</body>
+</html>
