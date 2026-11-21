@@ -1,6 +1,6 @@
 # BOSS läuft — Persönlicher Trainingskalender & Laufcoach
 
-Intelligenter Laufkalender und Trainingsplaner mit Schweizer Präzision und Design von Boss Holzbau AG ([www.bossholzbau.ch](https://www.bossholzbau.ch)).
+Intelligenter Laufkalender und Trainingsplaner mit Schweizer Präzision und modernem grünem Farbschema.
 
 ## Funktionen
 
