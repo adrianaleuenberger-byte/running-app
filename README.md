@@ -1,16 +1,19 @@
-# BOSS läuft — Persönlicher Trainingskalender & Laufcoach
+# BOSS läuft — Intelligenter Trainingskalender & Laufcoach
 
-Intelligenter Laufkalender und Trainingsplaner mit Schweizer Präzision und modernem grünem Farbschema.
+Intelligenter Laufkalender und adaptiver Trainingsplaner mit Schweizer Präzision und modernem grünem Farbschema.
 
-## Funktionen
+## Funktionen (Version 3.0)
 
-- **Planungsgenerator:** Flexible Planung der nächsten X Läufe (mit 2 bis 7 Einheiten pro Woche) ohne Lücken.
-- **Wettkampfvorbereitung:** Zielgerichtete Pläne für 10 km, 10 Meilen (16 km), Halbmarathon und Marathon inklusive Tapering.
-- **Alternativsport & Ruhetage:** Zukünftige Tage für Ausgleichssportarten (z. B. Velofahren, Schwimmen, Krafttraining) reservieren.
-- **Laufprotokollierung:** Ist-Daten (Gefühl, effektive Dauer, Distanz, Notizen) für heutige und vergangene Läufe erfassen.
-- **Zukunftsschutz:** Keine vorzeitige Erfassung von Ist-Daten bei zukünftigen Läufen.
-- **Vollständig lokal:** Alle Daten werden datenschutzfreundlich und persistent im Browser (`localStorage`) gespeichert. Export und Import via JSON.
+- **Physiologisches Athleten-Profil (VDOT):** Ermittlung der individuellen aeroben Kapazität und Tempobereiche (Locker/GA1, Schwellentempo/TDL, VO2max-Intervalle, Langer Lauf) anhand von bisherigem Wochenvolumen und Referenzzeit.
+- **Automatische Zielzeit-Berechnung:** Der Algorithmus berechnet selbstständig die realistische Zielzeit und Ziel-Pace basierend auf Fitness und Vorbereitungszeitraum.
+- **Flexible Wochentags-Auswahl:** Freie Wahl der Trainingstage (Mo–So) und des bevorzugten Wochentags für den langen Lauf.
+- **Distanz- & Tempogesteuerte Einheiten:** Klare Kombination aus Kilometer-Vorgabe, Ziel-Pace-Korridor und geschätzter Laufdauer.
+- **Mesozyklus-Periodisierung:** Progressive 4-Phasen-Struktur (Grundlage & Aufbau, Spezifischer Aufbau, Zuspitzung/Peak, Tapering & Regeneration) unter Einhaltung orthopädischer Steigerungsgrenzen.
+- **Harmonisiertes Farbschema:** Geplante Einheiten nutzen dasselbe intuitive Farbsystem wie Ist-Einheiten (Locker = Grün, Tempo = Bernstein, Intervalle = Korallrot, Langer Lauf = Blau) mit gestrichelter Umrandung.
+- **Adaptiver Coaching-Banner:** Erkennt verpasste Einheiten oder hohe Erschöpfung und bietet auf Knopfdruck eine automatische Entlastung des Wochenplans an.
+- **Alternativsport & Zukunftsschutz:** Reservieren von Ausgleichssportarten; Ist-Daten können erst am Lauftag erfasst werden.
+- **Vollständig lokal:** Alle Daten bleiben lokal und datenschutzfreundlich im Browser (`localStorage`). Export und Import als JSON.
 
-## Projektplan
+## Projekt- und Umsetzungsplan
 
-Den detaillierten Umsetzungs- und Entwicklungsstand finden Sie in der Datei [`PLAN.md`](./PLAN.md).
+Der detaillierte Entwicklungs- und Statusbericht befindet sich in [`PLAN.md`](./PLAN.md).
